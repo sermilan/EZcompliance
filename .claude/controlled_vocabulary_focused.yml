@@ -1,0 +1,107 @@
+# 网络安全政策法规领域 - 精简词表 v1.0
+# 只包含高价值概念：法律名、制度名、核心机制
+
+laws:
+  # 基础法律 - 最高价值
+  - canonical: "中华人民共和国网络安全法"
+    aliases: ["网络安全法", "网安法"]
+  - canonical: "中华人民共和国数据安全法"
+    aliases: ["数据安全法"]
+  - canonical: "中华人民共和国个人信息保护法"
+    aliases: ["个人信息保护法", "个保法"]
+  - canonical: "中华人民共和国密码法"
+    aliases: ["密码法"]
+  - canonical: "中华人民共和国国家安全法"
+    aliases: ["国家安全法"]
+  - canonical: "中华人民共和国保守国家秘密法"
+    aliases: ["保守国家秘密法", "保密法"]
+  - canonical: "中华人民共和国计算机信息系统安全保护条例"
+    aliases: ["计算机信息系统安全保护条例"]
+  - canonical: "中华人民共和国电子签名法"
+    aliases: ["电子签名法"]
+
+regulations:
+  # 行政法规
+  - canonical: "关键信息基础设施安全保护条例"
+    aliases: ["关键信息基础设施保护条例", "关基条例"]
+  - canonical: "网络安全审查办法"
+    aliases: ["安全审查办法"]
+  - canonical: "数据出境安全评估办法"
+    aliases: ["出境评估办法"]
+  - canonical: "网络安全等级保护条例"
+    aliases: ["等保条例"]
+
+standards:
+  # 国家标准 - 核心标准
+  - canonical: "GB/T 22239-2019 信息安全技术 网络安全等级保护基本要求"
+    aliases: ["等保2.0基本要求", "等级保护基本要求"]
+  - canonical: "GB/T 22240-2020 信息安全技术 网络安全等级保护定级指南"
+    aliases: ["等保定级指南", "定级指南"]
+  - canonical: "GB/T 25070-2019 信息安全技术 网络安全等级保护安全设计技术要求"
+    aliases: ["安全设计技术要求"]
+  - canonical: "GB/T 28448-2019 信息安全技术 网络安全等级保护测评要求"
+    aliases: ["等保测评要求", "测评要求"]
+  - canonical: "GB/T 35273-2020 信息安全技术 个人信息安全规范"
+    aliases: ["个人信息安全规范", "个保规范"]
+  - canonical: "GB/T 17859-1999 计算机信息系统安全保护等级划分准则"
+    aliases: ["等级划分准则"]
+  - canonical: "GB/T 20984-2022 信息安全技术 信息安全风险评估方法"
+    aliases: ["风险评估方法"]
+  - canonical: "GB/T 25069-2010 信息安全技术 术语"
+    aliases: ["信息安全术语"]
+  - canonical: "GB/T 41391-2022 信息安全技术 移动互联网应用程序（App）收集个人信息基本要求"
+    aliases: ["App收集个人信息基本要求"]
+  - canonical: "GB/T 42574-2023 信息安全技术 个人信息安全影响评估指南"
+    aliases: ["PIA指南", "个人信息安全影响评估"]
+
+concepts:
+  # 核心制度 - 高价值
+  - canonical: "数据分类分级保护制度"
+    aliases: ["数据分类分级", "分类分级保护"]
+  - canonical: "数据安全审查制度"
+    aliases: ["数据安全审查", "安全审查"]
+  - canonical: "数据出境安全评估"
+    aliases: ["数据出境评估", "出境评估"]
+  - canonical: "个人信息保护影响评估"
+    aliases: ["PIA评估", "隐私影响评估"]
+  - canonical: "网络安全等级保护制度"
+    aliases: ["等级保护制度", "等保制度", "等级保护"]
+  - canonical: "关键信息基础设施"
+    aliases: ["关基", "CII", "关键基础设施"]
+  - canonical: "等级保护测评"
+    aliases: ["等保测评", "安全测评"]
+
+  # 数据类型
+  - canonical: "个人信息"
+    aliases: ["个人数据"]
+  - canonical: "敏感个人信息"
+    aliases: ["敏感数据", "个人敏感信息"]
+  - canonical: "重要数据"
+    aliases: []
+  - canonical: "核心数据"
+    aliases: []
+
+  # 核心机制
+  - canonical: "身份鉴别"
+    aliases: ["身份认证"]
+  - canonical: "访问控制"
+    aliases: ["权限控制"]
+  - canonical: "安全审计"
+    aliases: ["日志审计"]
+  - canonical: "数据加密"
+    aliases: ["加密"]
+  - canonical: "应急响应"
+    aliases: ["应急预案", "应急处置"]
+  - canonical: "安全监测"
+    aliases: ["安全监控"]
+
+institutions:
+  # 监管机构
+  - canonical: "国家网信部门"
+    aliases: ["国家互联网信息办公室", "网信办", "国家网信办"]
+  - canonical: "公安机关"
+    aliases: ["公安部门", "公安网安"]
+  - canonical: "工业和信息化主管部门"
+    aliases: ["工业和信息化部", "工信部"]
+  - canonical: "行业主管部门"
+    aliases: ["行业监管部门"]
