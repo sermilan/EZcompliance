@@ -49,10 +49,14 @@ EZcompliance/
 ├── LICENSE                               # CC BY-SA 4.0
 ├── COU化状态报告.md                       # COU化进度追踪
 │
-├── policy-raw/                           # 原始政策文件 (1015个)
-│   ├── [✓] GBT22239-2019-网络安全等级保护基本要求.md
-│   ├── [✓] 网络安全法.md
-│   ├── GAT 2380—2026《信息安全技术 网络安全等级保护数据安全基本要求》（报批稿）.md
+├── policy-raw/                           # 原始政策文件 (1016个, 31个分类文件夹)
+│   ├── 法律法规/               (550)        # 网络安全法、PIPL、DSL 等
+│   ├── GBT-其他/               (95)         # GB/T 标准合集
+│   ├── 指南/                   (65)         # 各类指南/指引/规范
+│   ├── GBT20984/               (42)         # 信息安全风险评估方法
+│   ├── GAT系列/                (31)         # GA/T 行业标准
+│   ├── 国际与行业框架/          (31)         # OWASP, PCI-DSS, ISO, NIST 等
+│   ├── GAT2380-2026/           (1)          # 数据安全基本要求（报批稿）
 │   └── ...
 │
 ├── COU/
@@ -80,10 +84,6 @@ EZcompliance/
 │   ├── cou_extract_pipl.py               # 法律法规 COU 提取
 │   ├── cou_dedup.py                      # COU 去重合并
 │   └── policy_rename.py                  # 政策文件规范化重命名
-│
-├── .claude/                              # Claude Code 配置
-│   ├── commands/                         # 自定义命令 (公众号html排版 等)
-│   └── cou_dedup.py                      # 新版去重脚本
 │
 └── cou_extract_gat2380.py                # GA/T 2380 专项提取脚本
 ```
@@ -225,7 +225,7 @@ curl -X POST /api/cou/import -d @data/cou_merged_export.json
 3. COU-R 文件自动归入 `COU/COU-R（原始）/{标准名}/`
 4. 运行合并脚本:
    ```bash
-   python3 .claude/cou_dedup.py
+   python3 scripts/cou_dedup.py
    ```
 
 ---
