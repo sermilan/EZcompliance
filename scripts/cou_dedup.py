@@ -18,10 +18,11 @@ import hashlib
 from pathlib import Path
 from collections import defaultdict
 
-VAULT_ROOT = Path("/root/obsidian_vault")
-RAW_COU_DIR = VAULT_ROOT / "Wiki（维基）/Reference（参考）/COU/COU-R（原始）"
-MERGED_COU_DIR = VAULT_ROOT / "Wiki（维基）/Reference（参考）/COU/COU-M（合并）"
-EXPORT_FILE = VAULT_ROOT / "Wiki（维基）/Reference（参考）/COU/cou_merged_export.json"
+WORK_ROOT = Path("/root/ezcompliance")
+RAW_COU_DIR = WORK_ROOT / "COU" / "COU-R（原始）"
+MERGED_COU_DIR = WORK_ROOT / "COU" / "COU-M（合并）"
+EXPORT_FILE = WORK_ROOT / "data" / "cou_merged_export.json"
+SCENE_DIR = WORK_ROOT / "场景"
 
 # 主体归一化映射
 SUBJECT_NORMALIZE = {
@@ -150,33 +151,33 @@ def extract_frontmatter_cou(filepath):
         result["chapter"] = chapter_match.group(1).strip()
 
     if result:
-        result["_file"] = str(filepath.relative_to(VAULT_ROOT))
+        result["_file"] = str(filepath.relative_to(WORK_ROOT))
         return result
 
     return None
 
 
 def build_fingerprint_index():
-    """构建归一化fingerprint -> [raw_cou_list] 的索引"""
+    """构建归一化fingerprint -> [raw_cou_list] 的索引，递归扫描子文件夹"""
     fingerprint_map = defaultdict(list)
 
-    # 直接列出目录文件（避开特殊字符glob问题）
     if RAW_COU_DIR.exists():
-        for fpath in RAW_COU_DIR.iterdir():
-            if fpath.suffix == ".md" and fpath.name.startswith("COU-R-"):
-                cou_data = extract_frontmatter_cou(fpath)
-                if not cou_data:
-                    continue
+        # 递归扫描所有子文件夹中的 COU-R-*.md 文件
+        for fpath in RAW_COU_DIR.rglob("COU-R-*.md"):
+            cou_data = extract_frontmatter_cou(fpath)
+            if not cou_data:
+                continue
 
-                # 用原始fingerprint做key进行归一化聚类
-                fp = cou_data.get("fingerprint", "")
-                if fp:
-                    # 同时保留原始fingerprint用于显示
-                    cou_data["_original_fp"] = fp
-                    # 用归一化后的指纹做聚类key
-                    norm_fp = compute_norm_fingerprint(cou_data)
-                    cou_data["_file"] = str(fpath.relative_to(VAULT_ROOT))
-                    fingerprint_map[norm_fp].append(cou_data)
+            # 用原始fingerprint做key进行归一化聚类
+            fp = cou_data.get("fingerprint", "")
+            if fp:
+                # 同时保留原始fingerprint用于显示
+                cou_data["_original_fp"] = fp
+                # 用归一化后的指纹做聚类key
+                norm_fp = compute_norm_fingerprint(cou_data)
+                # 路径相对于 COU-R（原始）根目录，包含标准子文件夹
+                cou_data["_file"] = str(fpath.relative_to(RAW_COU_DIR))
+                fingerprint_map[norm_fp].append(cou_data)
 
     return fingerprint_map
 
@@ -236,7 +237,9 @@ def create_merged_cou_page(merged_id, norm_fingerprint, raw_cous):
 """
     for cou in raw_cous:
         fp_display = cou.get('_original_fp', '')[:30]
-        content += f"- [[{Path(cou['_file']).stem}]] — {cou.get('source', '')} {cou.get('chapter', '')} (fp: {fp_display}...)\n"
+        # 包含标准子文件夹路径的 wikilink
+        rel_path = cou.get('_file', '')
+        content += f"- [[{rel_path}|{Path(rel_path).stem}]] — {cou.get('source', '')} {cou.get('chapter', '')} (fp: {fp_display}...)\n"
 
     domains_list = sorted({cou.get('domains', ['unknown'])[0] for cou in raw_cous if cou.get('domains')})
 
