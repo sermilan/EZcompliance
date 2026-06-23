@@ -10,7 +10,7 @@ from pathlib import Path
 
 VAULT_ROOT = Path("/root/ezcompliance")
 OUTPUT_DIR = VAULT_ROOT / "COU/COU-R（原始）/网络数据安全风险评估办法"
-SOURCE_FILE = VAULT_ROOT / "国家互联网信息办公室-网络数据安全风险评估办法.md"
+SOURCE_FILE = VAULT_ROOT / "policy-raw/法律法规/[✓] 网络数据安全风险评估办法（2026联合令第24号）.md"
 
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
