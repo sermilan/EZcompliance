@@ -77,13 +77,6 @@ EZcompliance/
 │   └── 合并/                              # 跨标准场景合并（待生成）
 │
 ├── 网络数据安全风险评估办法-合规拆解报告.html  # 可视化HTML报告
-│
-└── scripts/                              # 处理脚本
-    ├── cou_batch_extract.py              # GB/T 标准 COU 批量提取
-    ├── cou_extract_pipl.py               # 法律法规 COU 提取
-    ├── cou_extract_nsra.py               # 部门规章 COU 提取 (联合令)
-    ├── cou_dedup.py                      # COU 去重合并
-    └── policy_rename.py                  # 政策文件规范化重命名
 ```
 
 ### 最新更新 (2026-06-23)
@@ -196,34 +189,6 @@ COU-M 文件中的 wikilink 包含标准子文件夹路径：
 ```
 
 ---
-
-## 使用场景
-
-### 1. 合规审计
-```bash
-# 查找所有"网络运营者"相关的"记录"义务
-grep -r "网络运营者|记录|" COU/COU-M（合并）/
-```
-
-### 2. 标准映射
-```bash
-# 查看某标准涉及的COU数量
-ls COU/COU-R（原始）/GBT22239-2019/ | wc -l
-```
-
-### 3. 数据导出
-```bash
-# 运行去重脚本生成 SaaS 导入 JSON
-python3 scripts/cou_dedup.py
-```
-
----
-
-## 贡献指南
-
-1. 政策原文放入 `policy-raw/{标准文件夹}/`
-2. 运行提取脚本生成 COU-R
-3. 运行 `python3 scripts/cou_dedup.py` 更新 COU-M
 
 ---
 
